@@ -29,10 +29,12 @@
 ### System
 > 
 
-## Grok
+## Parsing/Normalizing
+
+### Grok
 Not used as the logs are in CSV format.
 
-## Logstash
+### Logstash
 ```
 filter {
   if "paloalto" in [tags] {
