@@ -23,7 +23,6 @@ plugins:
   - jemoji
   - jekyll-avatar
   - jekyll-mentions
-  - jekyll-last-modified-at
 
 exclude:
   - Makefile
