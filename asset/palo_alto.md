@@ -1,7 +1,3 @@
----
-sort: 1
----
-
 # Palo Alto
 ## Log format
 ### Threat (V10.0)
