@@ -1,2 +1,2 @@
 # Welcome
-{% last_modified_at %}
+{% capture lastModificationDate %}{% last_modified {{ page.path }} %}{% endcapture %}
