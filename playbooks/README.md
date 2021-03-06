@@ -1,9 +1,14 @@
 # Playbooks Examples
 
+## Malware
 | Type                | Rule                                                            | Description |
 |---------------------|-----------------------------------------------------------------|-------------|
 | Malware             | M001 - Malware cleanup failed                                   |             |
 | Malware             | M002 - Malware detected                                         |             |
+
+## Login
+| Type                | Rule                                                            | Description |
+|---------------------|-----------------------------------------------------------------|-------------|
 | Login               | L001 - Superuser domain account used                            |             |
 | Login               | L002 - Superuser local account used                             |             |
 | Login               | L003 - Excessive number of accounts failed login                |             |
@@ -12,6 +17,10 @@
 | Login               | L006 - One account successfully logged onto multiple assets     |             |
 | Login               | L007 - Excessive number of accounts lockouts                    |             |
 | Login               | L008 - Excessive number of failed logins on gateway asset       |             |
+
+## Suspicious Activity
+| Type                | Rule                                                            | Description |
+|---------------------|-----------------------------------------------------------------|-------------|
 | Suspicious Activity | S001 - successful inbound remote access suspicious protocol     |             |
 | Suspicious Activity | S002 - successful inbound remote access suspicious port         |             |
 | Suspicious Activity | S003 - Outbound connection With suspicious port                 |             |
@@ -27,6 +36,11 @@
 | Suspicious Activity | S013 - Non jumphost user accessed jumphost                      |             |
 | Suspicious Activity | S014 - Service account logged on interactively                  |             |
 | Suspicious Activity | S015 - Endpoint protection disabled                             |             |
+
+## Recon
+
+| Type                | Rule                                                            | Description |
+|---------------------|-----------------------------------------------------------------|-------------|
 | Recon               | R001 - Internal network scan                                    |             |
 | Recon               | R002 - External network scan                                    |             |
 | Recon               | R003 - Internal service discovery                               |             |
