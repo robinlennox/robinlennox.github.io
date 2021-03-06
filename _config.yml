@@ -20,7 +20,11 @@ readme_index:
   with_frontmatter: true
 
 scss: |
-  .content-wrap .wy-nav-content{max-width:75%}
+  .wy-nav-content-wrap{background:#fcfcfc}
+  .wy-nav-content-wrap .wy-nav-content{max-width:none}
+  .wy-nav-content-wrap .wy-nav-content{min-width:none}
+  .wy-nav-content { max-width: 1200px !important;}
+
 
 plugins:
   - jemoji
