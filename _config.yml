@@ -18,6 +18,10 @@ copyright:
 
 readme_index:
   with_frontmatter: true
+  
+scss: |
+  .wy-nav-content-wrap{background:#fcfcfc}
+  .wy-nav-content-wrap .wy-nav-content{max-width:none}
 
 plugins:
   - jemoji
