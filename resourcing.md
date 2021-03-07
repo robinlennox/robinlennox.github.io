@@ -1,1 +1,1 @@
-# Resoursing
+# Resourcing
