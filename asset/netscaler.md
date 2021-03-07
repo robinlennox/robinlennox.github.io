@@ -1,10 +1,19 @@
 # NetScaler
 NetScaler uses [RFC 5424](https://tools.ietf.org/rfc/rfc5426.txt); if your log is missing a date in the field section, this could you or an intermediary log aggregator is configured to parse the log under [RFC 3164] (https://tools.ietf.org/rfc/rfc3164.txt). This date could be in field call XYZ
 
-## Log format
->  <134> 04/11/2016:18:04:49 GMT qa-lb1 0-PPE-0 : default TCP CONN_TERMINATE 244185561 0 : Source 10.230.50.75:9200 – Destination 10.230.53.6:8994 – Start Time 04/11/2016:18:04:49 GMT – End Time 04/11/2016:18:04:49 GMT – Total_bytes_send 124 – Total_bytes_recv 64
+# Log Format
+<135> 12/04/2017:17:21:00 GMT citrix.netscaler.test 0-PPE-1 : SSLLOG SSL_HANDSHAKE_SUCCESS 5743593 0 :  SPCBId 87630 - ClientIP 172.25.184.157 - ClientPort 19849 - VserverServiceIP 10.254.14.94 - VserverServicePort 443 - ClientVersion TLSv1.2 - CipherSuite "RC4-MD5 TLSv1.2 Non-Export 128-bit" - Session ReuseCopy code
 
-<http://intelligentsystemsmonitoring.com/knowledgebase/citrix/netscaler-gateway-12-0-no-line-breaks-on-events-when-going-through-syslogs/>
+| NetScaler Field  | Example   |
+|------------------|-------------------------|
+| Event ID         | SSL_HANDSHAKE_SUCCESS   |
+| Source IP        | 172.25.184.157          |
+| Source Port      | 19849                   |
+| Destination IP   | 10.254.14.94            |
+| Destination Port | 443                     |
+| Device Time      | 12/04/2017:17:21:00 GMT |
+
+<https://www.ibm.com/support/knowledgecenter/SS42VS_DSM/com.ibm.dsm.doc/c_dsm_guide_Citrix_NetScaler_sample_event_msg.html>
 
 ## Parsing/Normalizing
 
@@ -18,7 +27,7 @@ NetScaler uses [RFC 5424](https://tools.ietf.org/rfc/rfc5426.txt); if your log i
 >"<%{POSINT:syslog_pri}> %{DATE_US}:%{TIME} GMT %{SYSLOGHOST:syslog_hostname} %{GREEDYDATA:netscaler_message}"
 
 ### Logstash
-```python
+```yml
 input {
   syslog {
     type => "netscaler"
@@ -170,4 +179,4 @@ output {
 | THREAT   | Recipient            | destination.user.email                 |                                  |
 | THREAT   | Device Name          | observer.hostname                      |                                  |
 
-The source of this infomration was from [elastic.co](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-module-panw.html)
+The source of this information was from [elastic.co](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-module-panw.html)

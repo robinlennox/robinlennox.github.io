@@ -36,7 +36,7 @@
 Not used as the logs are in CSV format.
 
 ### Logstash
-``` python
+``` yml
 filter {
   if "paloalto" in [tags] {
     if [type] == "url" {
@@ -225,4 +225,4 @@ filter {
 | THREAT   | Recipient            | destination.user.email                 |                                  |
 | THREAT   | Device Name          | observer.hostname                      |                                  |
 
-The source of this infomration was from [elastic.co](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-module-panw.html)
+The source of this information was from [elastic.co](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-module-panw.html)
