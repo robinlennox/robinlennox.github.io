@@ -36,7 +36,7 @@
 Not used as the logs are in CSV format.
 
 ### Logstash
-``` yml
+```python
 filter {
   if "paloalto" in [tags] {
     if [type] == "url" {
