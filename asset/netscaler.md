@@ -37,8 +37,7 @@ NetScaler uses [RFC 5424](https://tools.ietf.org/rfc/rfc5426.txt); if your log i
 > <%{INT:syslog_pri}> %{DATE_US}:%{TIME} GMT %{SYSLOGHOST:syslog_hostname} %{GREEDYDATA:netscaler_message} : %{DATA} %{IP:source_ip}:%{INT:source_port} - %{DATA} %{IP:vserver_ip}:%{INT:vserver_port} - %{DATA} %{IP:nat_ip}:%{INT:nat_port} - %{DATA} %{IP:destination_ip}:%{INT:destination_port} - %{DATA} (?<delink_time>%{DATE}:%{TIME}) GMT %{DATA} %{INT:total_bytes_sent} - %{DATA} %{INT:total_bytes_recv}"
 
 #### Start/End Date
-> <%{INT:syslog_pri}> %{DATE_US}:%{TIME} GMT %{SYSLOGHOST:syslog_hostname} %{GREEDYDATA:netscaler_message} : %{DATA} 
-\%{IP:source_ip}:%{INT:source_port} - %{DATA} %{IP:destination_ip}:%{INT:destination_port} - %{DATA} (?<start_time>%{DATE}%{TIME}) GMT - %{DATA} (?<end_time>%{DATE}%{TIME}) GMT - %{DATA} %{INT:total_bytes_sent} - %{DATA} %{INT:total_bytes_recv}"
+> <%{INT:syslog_pri}> %{DATE_US}:%{TIME} GMT %{SYSLOGHOST:syslog_hostname} %{GREEDYDATA:netscaler_message} : %{DATA} %{IP:source_ip}:%{INT:source_port} - %{DATA} %{IP:destination_ip}:%{INT:destination_port} - %{DATA} (?<start_time>%{DATE}%{TIME}) GMT - %{DATA} (?<end_time>%{DATE}%{TIME}) GMT - %{DATA} %{INT:total_bytes_sent} - %{DATA} %{INT:total_bytes_recv}"
 
 #### SPCBId VServer
 > "<%{INT:syslog_pri}> %{DATE_US}:%{TIME} GMT %{SYSLOGHOST:syslog_hostname} %{GREEDYDATA:netscaler_message} : %{DATA} %{INT:netscaler_spcbid} - %{DATA} %{IP:source_ip} - %{DATA} %{INT:source_port} - %{DATA} %{IP:vserver_ip} - %{DATA} %{INT:vserver_port} - %{GREEDYDATA:netscaler_message} - %{DATA} %{WORD:netscaler_session_type}"
