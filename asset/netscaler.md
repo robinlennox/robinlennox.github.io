@@ -118,7 +118,7 @@ output {
 ## Field Mapping
 
 | NetScaler Field      | ECS Field                              | Non-standard field               |
-|----------|----------------------|----------------------------------------|----------------------------------|
+|----------------------|----------------------------------------|----------------------------------|
 | SYSLOG_PRIORITY          | log.syslog.priority                    |                                  |
 | DATE_US TIME GMT         | @timestamp                             |                                  |
 | SYSLOGHOST               | observer.hostname                      |                                  |
