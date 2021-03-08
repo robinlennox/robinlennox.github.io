@@ -12,7 +12,7 @@ NetScaler uses [RFC 5424](https://tools.ietf.org/rfc/rfc5426.txt); if your log i
 > SYSLOG_PRIORITY DATE_US TIME GMT SYSLOGHOST NETSCALER_MESSAGE : DATA NETSCALER_SPCBID - DATA CLIENT_IP - DATA CLIENT_PORT - DATA VIRTUAL_IP - DATA VIRTUAL_PORT NETSCALER_MESSAGE - DATA SESSION_TYPE"
 
 ### Catch All
-><135> 12/04/2017:17:21:00 GMT citrix.netscaler.test 0-PPE-1 : SSLLOG SSL_HANDSHAKE_SUCCESS 5743593 0 :  SPCBId 87630 - ClientIP 172.25.184.157 - ClientPort 19849 - VserverServiceIP 10.254.14.94 - VserverServicePort 443 - ClientVersion TLSv1.2 - CipherSuite "RC4-MD5 TLSv1.2 Non-Export 128-bit" - Session ReuseCopy code
+> SYSLOG_PRIORITY DATE_US TIME GMT SYSLOGHOST NETSCALER_MESSAGE
 
 ## Log Sample
 
@@ -27,8 +27,7 @@ NetScaler uses [RFC 5424](https://tools.ietf.org/rfc/rfc5426.txt); if your log i
 > <134> May 20 23:35:25 GMT vm-server01 0-PPE-0 : SSLLOG SSL_HANDSHAKE_SUCCESS 6103955 0 :  SPCBId 59218 - ClientIP 142.28.165.235 - ClientPort 56308 - VserverServiceIP 192.168.1.200 - VserverServicePort 443 - ClientVersion TLSv1.0 - CipherSuite "RC4-MD5 TLSv1  Non-Export 128-bit" - Session Reuse
 
 ### Catch All
-> <134> May 20 23:35:25 GMT vm-server01 0-PPE-0 : default AAA Message 2266162 0 :  " In receive_ldap_user_bind_event: ldap_bind user failed for user user1"
->"<%{POSINT:syslog_pri}> %{DATE_US}:%{TIME} GMT %{SYSLOGHOST:syslog_hostname} %{GREEDYDATA:netscaler_message}
+> <134> May 20 23:35:25 GMT vm-server01 0-PPE-0 : default AAA Message 2266162 0 :  " In receive_ldap_user_bind_event: ldap_bind user failed for user user1
 
 ## Parsing/Normalizing
 
@@ -132,7 +131,7 @@ output {
 | DESTINATION_IP           | destination.ip                         |                                  |
 | DESTINATION_PORT         | destination.port                       |                                  |
 | START_DATE:START_TIME    | event.start                            |                                  |
-| END_DATE:END_TIME        | event.start                            |                                  |
+| END_DATE:END_TIME        | event.end                            |                                  |
 | TOTAL_BYTES_SENT         | client.bytes destination.bytes         |                                  |
 | TOTAL_BYTES_RECEIVED     | server.bytes source.bytes              |                                  |
 | DELINK_DATE:DELINK_TIME  |                                        | netscaler.delink                 |
