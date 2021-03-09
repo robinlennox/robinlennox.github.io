@@ -84,6 +84,7 @@ The source of this information was from [microsoft.com](https://docs.microsoft.c
 
 ## DNS Server Analytic Events
 The source of this information was from [microsoft.com](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn800669(v=ws.11)#analytic-events)
+
 | Event ID | Type                       | Category        | Level         | Event text                                                                                                                                                                                         |
 |----------|----------------------------|-----------------|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 257      | Response success           | Lookup          | Informational | RESPONSE_SUCCESS: TCP=%1; InterfaceIP=%2; Destination=%3; AA=%4; AD=%5; QNAME=%6; QTYPE=%7; XID=%8; DNSSEC=%9; RCODE=%10; Port=%11; Flags=%12; Scope=%13; Zone=%14; PolicyName=%15; PacketData=%17 |
