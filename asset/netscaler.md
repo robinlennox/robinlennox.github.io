@@ -1,5 +1,5 @@
 # NetScaler
-NetScaler uses [RFC 5424](https://tools.ietf.org/rfc/rfc5426.txt); if your log is missing a date in the field section, this could you or an intermediary log aggregator is configured to parse the log under [RFC 3164] (https://tools.ietf.org/rfc/rfc3164.txt). This date could be in field call XYZ
+NetScaler uses [RFC 5424](https://tools.ietf.org/rfc/rfc5426.txt); if your log is missing a date in the field section, this could you or an intermediary log aggregator is configured to parse the log under [RFC 3164] (https://tools.ietf.org/rfc/rfc3164.txt). This date could be in field call syslog-legacy-msghdr.
 
 # Log Format
 ## Delink
