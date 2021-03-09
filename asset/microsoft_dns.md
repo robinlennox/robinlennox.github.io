@@ -1,4 +1,4 @@
-# Configure Microsoft DNS 
+# Microsoft DNS 
 
 * Open an elevated Windows PowerShell prompt on the DNS server.
 * Run `Set-DnsServerDiagnostics -All $true`
