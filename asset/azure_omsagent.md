@@ -1,33 +1,17 @@
-# NetScaler
-NetScaler uses [RFC 5424](https://tools.ietf.org/rfc/rfc5426.txt); if your log is missing a date in the field section, this could you or an intermediary log aggregator is configured to parse the log under [RFC 3164] (https://tools.ietf.org/rfc/rfc3164.txt). This date could be in field call syslog-legacy-msghdr.
+# Microsoft OMS Agent
+
+The OMS (Operations Management Suite) Agent is used on Azure to send real-time analytics for operational data (Syslog, performance, alerts, inventory) from Linux servers, Docker containers and monitoring tools like Nagios, Zabbix and System Center to [Log Analytics](https://docs.microsoft.com/en-us/azure/azure-monitor/agents/log-analytics-agent).
+
+THe logs should be in the standard syslog format.
+
+https://docs.microsoft.com/en-us/azure/azure-monitor/agents/agent-linux-troubleshoot
+<https://github.com/KTH/oms-to-elk>
+
+Extact on log type?
 
 ## Log Format
 ### Delink
 > SYSLOG_PRIORITY DATE_US TIME GMT SYSLOGHOST NETSCALER_MESSAGE : DATA SOURCE_IP:SOURCE_PORT - DATA VIRTUAL_IP:VIRTUAL_PORT - DATA NATL_IP:NAT_PORT - DATA DESTINATION_IP:DESTINATION_PORT - DATA DELINK_DATE:DELINK_TIME GMT - DATA TOTAL_BYTES_SENT - DATA TOTAL_BYTES_RECEIVED
-
-### Start/End Date
-> SYSLOG_PRIORITY DATE_US TIME GMT SYSLOGHOST NETSCALER_MESSAGE : DATA SOURCE_IP:SOURCE_PORT - DATA DESTINATION_IP:DESTINATION_PORT - DATA START_DATE:START_TIME GMT - DATA END_DATE:END_TIME GMT - DATA TOTAL_BYTES_SENT - DATA TOTAL_BYTES_RECEIVED
-
-### SPCBId VServer
-> SYSLOG_PRIORITY DATE_US TIME GMT SYSLOGHOST NETSCALER_MESSAGE : DATA NETSCALER_SPCBID - DATA CLIENT_IP - DATA CLIENT_PORT - DATA VIRTUAL_IP - DATA VIRTUAL_PORT NETSCALER_MESSAGE - DATA SESSION_TYPE"
-
-### Catch All
-> SYSLOG_PRIORITY DATE_US TIME GMT SYSLOGHOST NETSCALER_MESSAGE
-
-## Log Sample
-
-### Delink
-> <134> May 20 23:35:25 GMT vm-server01 10.217.245.231 08/27/2012:20:00:47 GMT  0-PPE-0 : TCP CONN_DELINK 4389 0 :  Source 10.210.224.177:59839 - Vserver 10.217.245.233:80 - NatIP 10.217.245.232:17708 - Destination 192.168.10.1:80 - Delink Time 08/27/2012:20:00:47 GMT - Total_bytes_send 464 - Total_bytes_recv 64248
-
-### Start/End Date
-> <134> May 20 23:35:25 GMT vm-server01 05/20/2014:21:35:25 GMT server01 0-PPE-0 : TCP CONN_TERMINATE 809689 0 : Source 127.0.0.1:7776 - Destination 127.0.0.2:59919 - Start Time 05/20/2014:21:34:42 GMT - End Time 05/20/2014:21:35:25 GMT - Total_bytes_send 1 - Total_bytes_recv 1
-
-
-### SPCBId VServer
-> <134> May 20 23:35:25 GMT vm-server01 0-PPE-0 : SSLLOG SSL_HANDSHAKE_SUCCESS 6103955 0 :  SPCBId 59218 - ClientIP 142.28.165.235 - ClientPort 56308 - VserverServiceIP 192.168.1.200 - VserverServicePort 443 - ClientVersion TLSv1.0 - CipherSuite "RC4-MD5 TLSv1  Non-Export 128-bit" - Session Reuse
-
-### Catch All
-> <134> May 20 23:35:25 GMT vm-server01 0-PPE-0 : default AAA Message 2266162 0 :  " In receive_ldap_user_bind_event: ldap_bind user failed for user user1
 
 ## Parsing/Normalizing
 
@@ -35,17 +19,8 @@ NetScaler uses [RFC 5424](https://tools.ietf.org/rfc/rfc5426.txt); if your log i
 #### Delink
 > <%{INT:syslog_pri}> %{DATE_US}:%{TIME} GMT %{SYSLOGHOST:syslog_hostname} %{GREEDYDATA:netscaler_message} : %{DATA} %{IP:source_ip}:%{INT:source_port} - %{DATA} %{IP:vserver_ip}:%{INT:vserver_port} - %{DATA} %{IP:nat_ip}:%{INT:nat_port} - %{DATA} %{IP:destination_ip}:%{INT:destination_port} - %{DATA} (?<delink_time>%{DATE}:%{TIME}) GMT %{DATA} %{INT:total_bytes_sent} - %{DATA} %{INT:total_bytes_recv}"
 
-#### Start/End Date
-> <%{INT:syslog_pri}> %{DATE_US}:%{TIME} GMT %{SYSLOGHOST:syslog_hostname} %{GREEDYDATA:netscaler_message} : %{DATA} %{IP:source_ip}:%{INT:source_port} - %{DATA} %{IP:destination_ip}:%{INT:destination_port} - %{DATA} (?<start_time>%{DATE}%{TIME}) GMT - %{DATA} (?<end_time>%{DATE}%{TIME}) GMT - %{DATA} %{INT:total_bytes_sent} - %{DATA} %{INT:total_bytes_recv}"
-
-#### SPCBId VServer
-> <%{INT:syslog_pri}> %{DATE_US}:%{TIME} GMT %{SYSLOGHOST:syslog_hostname} %{GREEDYDATA:netscaler_message} : %{DATA} %{INT:netscaler_spcbid} - %{DATA} %{IP:source_ip} - %{DATA} %{INT:source_port} - %{DATA} %{IP:vserver_ip} - %{DATA} %{INT:vserver_port} - %{GREEDYDATA:netscaler_message} - %{DATA} %{WORD:netscaler_session_type}
-
-#### Catch All
-> <%{POSINT:syslog_pri}> %{DATE_US}:%{TIME} GMT %{SYSLOGHOST:syslog_hostname} %{GREEDYDATA:netscaler_message}
-
 ### Logstash
-```ruby
+```python
 input {
   syslog {
     type => "netscaler"
@@ -114,6 +89,7 @@ output {
 ```
 <https://gist.github.com/haukurk/95a7dad58ff475fbb987#file-logstash-netscaler-conf>
 
+
 ## Field Mapping
 
 | NetScaler Field         | ECS Field                      | Non-standard field |
@@ -135,16 +111,3 @@ output {
 | TOTAL_BYTES_SENT        | client.bytes destination.bytes |                    |
 | TOTAL_BYTES_RECEIVED    | server.bytes source.bytes      |                    |
 | DELINK_DATE:DELINK_TIME |                                | netscaler.delink   |
-
-# Checks
-## CMD Command
-### Login Success
-Logging into a Network appliance should be a rare event.
-> Oct 16 15:09:19 <local0.info> xxx.xxx.xxx.xxx 10/16/2018:19:09:19 GMT 005056bc9eb0 0-PPE-0 : default GUI CMD_EXECUTED 140 0 :  User nsroot - Remote_ip xx.xxx.xxx.xxx. - Command "login nsroot "********"" - Status "Success"
-### Login failure
-Logging into a Network appliance should be a rare event.
-> Oct 16 15:09:19 <local0.info> xxx.xxx.xxx.xxx 10/16/2018:19:09:19 GMT 005056bc9eb0 0-PPE-0 : default GUI CMD_EXECUTED 140 0 :  User nsroot - Remote_ip xx.xxx.xxx.xxx. - Command "login nsroot "********"" - Status "ERROR: Invalid username or password"
-
-### CMD_Execute
-Running commands on a network appliance should be monitored and confirmed as part of a change
-> Oct 16 15:09:19 <local0.info> xxx.xxx.xxx.xxx 10/16/2018:19:09:19 GMT NS_VPX_24_20 0-PPE-0 : GUI CMD_EXECUTED 14732 0 :  User nsroot - Remote_ip xxx.xxx.xxx.  - Command "show cs vserver csw_internal-mnt.citrix_80" - Status "Success"

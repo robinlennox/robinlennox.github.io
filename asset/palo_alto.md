@@ -36,7 +36,7 @@
 Not used as the logs are in CSV format.
 
 ### Logstash old
-```python
+```ruby
 filter {
   if "paloalto" in [tags] {
     if [type] == "url" {
@@ -152,7 +152,7 @@ filter {
 }
 ```
 
-``` python
+``` ruby
 filter {
   if "pa" in [tags]{
     grok {

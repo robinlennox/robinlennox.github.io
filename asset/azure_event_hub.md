@@ -61,16 +61,16 @@ Information on ingesting resource ids into elastic can be found at: <https://git
 
 ## Field Mapping
 
-| Log Type | Azure Field         | ECS Field                              | Non-standard field               |
-|----------|----------------------|----------------------------------------|----------------------------------|
-| azure  | /subscriptions/{subscriptionId}         |                           | azure.subscription_id                                 |
-| azure  | azure.correlation_id        |                  | azure.correlation_id                                 | 
-| azure  | azure.tenant_id                 |                         | azure.tenant_id                                  | 
-| resource  | azure.resource_id              |                            | azure.resource.id                                |
-| resource  | /resourceGroups/{resourceGroupName}              |                            | azure.resource.group                                 |
-| resource  | /providers/{extensionResourceProviderNamespace}       |                              | azure.resource.provider                                |
-| resource  | /namespaces/{extensionResourceName}            |                     | azure.resource.namespace                                 |
-| resource  | /providers/{extensionResourceProviderNamespace}/{extensionResourceType}/{extensionResourceName}       |                | azure.resource.name                                 |
-| resource  | /authorizationrules/{authorizationRules}        |                                        | azure.resource.authorization_rule         |
+| Log Type | Azure Field                                                                                     | ECS Field | Non-standard field                |
+|----------|-------------------------------------------------------------------------------------------------|-----------|-----------------------------------|
+| azure    | /subscriptions/{subscriptionId}                                                                 |           | azure.subscription_id             |
+| azure    | azure.correlation_id                                                                            |           | azure.correlation_id              |
+| azure    | azure.tenant_id                                                                                 |           | azure.tenant_id                   |
+| resource | azure.resource_id                                                                               |           | azure.resource.id                 |
+| resource | /resourceGroups/{resourceGroupName}                                                             |           | azure.resource.group              |
+| resource | /providers/{extensionResourceProviderNamespace}                                                 |           | azure.resource.provider           |
+| resource | /namespaces/{extensionResourceName}                                                             |           | azure.resource.namespace          |
+| resource | /providers/{extensionResourceProviderNamespace}/{extensionResourceType}/{extensionResourceName} |           | azure.resource.name               |
+| resource | /authorizationrules/{authorizationRules}                                                        |           | azure.resource.authorization_rule |
 
 The source of this information was from [elastic.co](https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html)
