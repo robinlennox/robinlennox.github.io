@@ -15,6 +15,7 @@ Extract on log type?
 
 ### Message without type
 > DATE: MESSAGE
+
 ## Log Format
 ### Message with Type
 > 2000-01-01 00:00:00 +0000 [error]: unexpected error error_class=ThreadError error=#<ThreadError: can't create Thread: Resource temporarily unavailable>
