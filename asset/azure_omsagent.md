@@ -7,8 +7,6 @@ The logs should be in the standard syslog format.
 https://docs.microsoft.com/en-us/azure/azure-monitor/agents/agent-linux-troubleshoot
 <https://github.com/KTH/oms-to-elk>
 
-Extract on log type?
-
 ## Log Format
 ### Message with Type
 > DATE TIME [TYPE] MESSAGE
