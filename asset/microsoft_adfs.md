@@ -4,8 +4,8 @@ Link to ADFS event id (https://adfshelp.microsoft.com/AdfsEventViewer/GetAdfsEve
 
 # ADFS Event ID's
 
-| ID | Event Name | Event Description | Windows |  |  |
-|-|-|-|-|-|-|
+| ID | Event Name | Event Description | Windows |
+|-|-|-|-|
 | 100 | FsServiceStart | The Federation Service started successfully. The following service hosts have been added: %1  | 2012 R2,2016,2019 |
 | 102 | StartupException | There was an error in enabling endpoints of Federation Service. Fix configuration errors using PowerShell cmdlets and restart the Federation Service. Additional Data Exception details: %1  | 2012 R2,2016,2019 |
 | 103 | FsServiceStop | The Federation Service stopped successfully.  | 2012 R2,2016,2019 |
