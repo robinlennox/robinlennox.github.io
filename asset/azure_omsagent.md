@@ -32,6 +32,7 @@ Extract on log type?
 #### Message without type
 > ": %{WORD:type} %{GREEDYDATA:message}"
 ### Logstash
+
 ```ruby
 
 filter {
