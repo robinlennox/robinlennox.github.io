@@ -29,6 +29,7 @@ https://docs.microsoft.com/en-us/azure/azure-monitor/agents/agent-linux-troubles
 
 #### Message without type
 > ": %{WORD:type} %{GREEDYDATA:message}"
+
 ### Logstash
 
 ```ruby
