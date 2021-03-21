@@ -3,6 +3,7 @@
 Link to ADFS event id (https://adfshelp.microsoft.com/AdfsEventViewer/GetAdfsEventList)
 
 # ADFS Event ID's
+
 | ID | Event Name | Event Description | Windows |  |  |
 |-|-|-|-|-|-|
 | 100 | FsServiceStart | The Federation Service started successfully. The following service hosts have been added: %1  | 2012 R2,2016,2019 |
